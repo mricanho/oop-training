@@ -1,5 +1,5 @@
 # rubocop:disable Style/OptionalBooleanParameter, Naming/PredicateName
-require './corrector'
+require_relative './corrector'
 
 class Person
   attr_accessor :name, :age, :rentals
@@ -21,9 +21,7 @@ class Person
   def validate_name
     @name = @corrector.correct_name(@name)
   end
-
-  private
-
+  
   def is_of_age?
     @age >= 18
   end
