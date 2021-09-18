@@ -9,28 +9,32 @@ require_relative '../lib/person'
 
 class Main
   attr_accessor :books, :people, :rentals
-  
+
   def initialize
     @books = []
     @people = []
     @rentals = []
   end
+  
+  def display_message
+    puts 'Please choose an option by enterin a number:'
+    puts '1 - Display all books'
+    puts '2 - Display all people'
+    puts '3 - Create a new person'
+    puts '4 - Create a new book'
+    puts '5 - Rent a book'
+    puts '6 - Display all rentals for a given person'
+    puts '7 - Exit'
+    puts "\n"
+    puts 'Choose one of the options above:'
+  end
 
   def welcome_message
     puts Messages::INTRODUCTION
-    puts "The following is the list of options available on this app"
+    puts 'The following is the list of options available on this app'
     inputed_choice = 0
-    while (inputed_choice != 7) do
-      puts 'Please choose an option by enterin a number:'
-      puts '1 - Display all books'
-      puts '2 - Display all people'
-      puts '3 - Create a new person'
-      puts '4 - Create a new book'
-      puts '5 - Rent a book'
-      puts '6 - Display all rentals for a given person'
-      puts '7 - Exit'
-      puts "\n"
-      puts 'Choose one of the options above:'
+    while inputed_choice != 7
+      display_message
       inputed_choice = gets.chomp.to_i
 
       case inputed_choice
