@@ -90,7 +90,7 @@ class Main
     puts "Enter a number corresponding with a book of your choice"
     @people.each_with_index do |student, index|
       puts "#{index}. [#{student.class}] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
-    end
+    endlibrary.
     student_index = gets.chomp.to_i
 
     puts "Enter date: "
@@ -119,7 +119,6 @@ class Main
     puts Messages::INTRODUCTION
     puts "The following is the list of options available on this app"
     inputed_choice = 0
-    library = Main.new
     while (inputed_choice != 7) do
       puts 'Please choose an option by enterin a number:'
       puts '1 - Display all books'
@@ -135,17 +134,17 @@ class Main
 
       case inputed_choice
       when 1
-        library.display_books
+        display_books
       when 2
-        library.display_persons
+        display_persons
       when 3
-        library.create_new_person
+        create_new_person
       when 4
-        library.create_new_book
+        create_new_book
       when 5
-        library.create_new_rental
+        create_new_rental
       when 6
-        library.display_rentals
+        display_rentals
       else
         puts 'Thank you for using our app, you can always come back'
       end
