@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/CyclomaticComplexity
 require_relative '../lib/book'
 require_relative '../lib/classroom'
 require_relative '../lib/corrector'
@@ -15,7 +16,7 @@ class Main
     @people = []
     @rentals = []
   end
-  
+
   def display_message
     puts 'Please choose an option by enterin a number:'
     puts '1 - Display all books'
@@ -29,7 +30,7 @@ class Main
     puts 'Choose one of the options above:'
   end
 
-  def welcome_message
+  def welcome_message # rubocop:disable Metrics/ClassLength
     puts Messages::INTRODUCTION
     puts 'The following is the list of options available on this app'
     inputed_choice = 0
@@ -64,3 +65,4 @@ end
 
 main = Main.new
 main.main
+# rubocop:enable Metrics/CyclomaticComplexity
