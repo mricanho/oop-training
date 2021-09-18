@@ -21,10 +21,10 @@ class Person
   def validate_name
     @name = @corrector.correct_name(@name)
   end
-  
+
   def self.display_persons(people)
     if people.length.positive?
-      people.each { |people| puts "Name: #{people.name},  ID: #{people.id}, Age: #{people.age}" }
+      people.each { |ppl| puts "Name: #{ppl.name},  ID: #{ppl.id}, Age: #{ppl.age}" }
     else
       puts 'Students empty!!!'
     end
@@ -48,7 +48,7 @@ class Person
       Student.new(age, name, parent_permission_)
 
       puts 'Student creation success!'
-      
+
     when '2'
       puts 'Enter age: '
       age = gets.chomp
@@ -68,7 +68,7 @@ class Person
       nil
     end
   end
-  
+
   def is_of_age?
     @age >= 18
   end
