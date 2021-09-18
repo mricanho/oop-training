@@ -30,7 +30,7 @@ class Main
     puts 'Choose one of the options above:'
   end
 
-  def welcome_message # rubocop:disable Metrics/ClassLength
+  def welcome_message # rubocop:disable Metrics/MethodLength
     puts Messages::INTRODUCTION
     puts 'The following is the list of options available on this app'
     inputed_choice = 0
