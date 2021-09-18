@@ -3,7 +3,6 @@ require_relative '../lib/classroom'
 require_relative '../lib/corrector'
 require_relative '../lib/student'
 require_relative '../lib/rental'
-require_relative '../lib/student'
 require_relative '../lib/teacher'
 require_relative '../lib/messages'
 
@@ -13,17 +12,18 @@ class Main
     @people = []
     @rentals = []
   end
+
   def display_books
     if @books.length.positive?
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     else
-      puts 'Books empy!!!'
+      puts 'Books empty!!!'
     end
   end
 
-  def display_students
-    if @students.length.positive?
-      puts "Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
+  def display_persons
+    if @people.length.positive?
+      @people.each { |people| puts "Name: #{people.name},  ID: #{people.id}, Age: #{people.age}" }
     else
       puts 'Students empty!!!'
     end
@@ -88,7 +88,7 @@ class Main
     book_index = gets.chomp.to_i
 
     puts "Enter a number corresponding with a book of your choice"
-    @students.each_with_index do |student, index|
+    @people.each_with_index do |student, index|
       puts "#{index}. [#{student.class}] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
     end
     student_index = gets.chomp.to_i
@@ -96,26 +96,31 @@ class Main
     puts "Enter date: "
     date = gets.chomp
 
-    @rentals << Rental.new(date, @books[book_index], @students[student_index])
+    @rentals << Rental.new(date, @books[book_index], @people[student_index])
     puts 'Rent success!'
   end
 
   def display_rentals
-    puts 'Enter student: '
+    puts 'Enter student id: '
     id = gets.chomp.to_i
 
-    rentals = @rentals.filter { |rental| rental.student.id == id }
+    rentals = @rentals.filter { |rental| rental.person.id == id }
     puts "All rentals of the student with ID #{id}:"
-    rentals.each do |rental|
-      puts "Rental date: #{rental.date}, Book rent on: \"#{rental.book.title}\" Written by: #{rental.book.author}"
+    if rentals.length.positive?
+      rentals.each do |rental|
+        puts "Rental date: #{rental.date}, Book rent on: \"#{rental.book.title}\" Written by: #{rental.book.author}"
+      end
+    else
+      puts "No book is on rent by the student with ID #{id}."
     end
   end
-end
 
   def welcome_message
     puts Messages::INTRODUCTION
     puts "The following is the list of options available on this app"
-    while (inputed_choice >= inputed_choice.to_i or inputed_choice == 0) do
+    inputed_choice = 0
+    library = Main.new
+    while (inputed_choice != 7) do
       puts 'Please choose an option by enterin a number:'
       puts '1 - Display all books'
       puts '2 - Display all people'
@@ -127,29 +132,31 @@ end
       puts "\n"
       puts 'Choose one of the options above:'
       inputed_choice = gets.chomp.to_i
-  
-      case selection
+
+      case inputed_choice
       when 1
-        app.all_books
+        library.display_books
       when 2
-        app.all_people
+        library.display_persons
       when 3
-        app.create_person
+        library.create_new_person
       when 4
-        app.create_book
+        library.create_new_book
       when 5
-        app.create_rental
+        library.create_new_rental
       when 6
-        app.list_rentals
+        library.display_rentals
       else
         puts 'Thank you for using our app, you can always come back'
       end
       puts "\n"
+    end
+  end
+
+  def main
+    welcome_message
   end
 end
-def main
-  welcome_message
-end
-main = Main.new
 
+main = Main.new
 main.main
