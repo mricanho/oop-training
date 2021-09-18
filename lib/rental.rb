@@ -8,7 +8,7 @@ class Rental
     @person = person
     person.rentals << self
   end
-  
+
   def self.create_new_rental(books, people)
     puts 'Enter a number corresponding with a book of your choice'
     books.each_with_index do |book, index|
@@ -16,13 +16,13 @@ class Rental
     end
     book_index = gets.chomp.to_i
 
-    puts "Enter a number corresponding with a book of your choice"
+    puts 'Enter a number corresponding with a book of your choice'
     people.each_with_index do |student, index|
       puts "#{index}. [#{student.class}] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
     end
     student_index = gets.chomp.to_i
 
-    puts "Enter date: "
+    puts 'Enter date: '
     date = gets.chomp
 
     Rental.new(date, books[book_index], people[student_index])
