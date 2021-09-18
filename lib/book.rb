@@ -13,7 +13,7 @@ class Book
     Rental.new(date, seld, person)
     @rentals.push(rental)
   end
-  
+
   def self.create_new_book
     puts 'Enter title: '
     title = gets.chomp
