@@ -30,7 +30,7 @@ class Person
     end
   end
 
-  def create_new_person
+  def create_new_person # rubocop:disable Metrics/MethodLength
     puts 'To create a new student enter (1), to create a new teacher enter (2)'
     inputed_choice = gets.chomp
 
@@ -44,7 +44,7 @@ class Person
 
       puts 'Parent permission? (Enter Y for Yes or any other key for No)'
       parent_permission = gets.chomp
-      parent_permission_ = parent_permission.downcase == 'y' ? true : false
+      parent_permission_ = parent_permission.downcase == 'y'
       Student.new(age, name, parent_permission_)
 
       puts 'Student creation success!'
